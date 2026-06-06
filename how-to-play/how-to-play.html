@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How-To-Play: MathVerse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        space: {
+                            50: "#f5f7fa",
+                            900: "#0b0f19",
+                            950: "#030712"
+                        },
+                        neon: {
+                            purple: "#a855f7",
+                            cyan: "#06b6d4",
+                            pink: "#ec4899",
+                            green: "#10b981"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ['"Space Grotesk"', "sans-serif"]
+                    },
+                    boxShadow: {
+                        "neon-glow": "0 0 15px rgba(168, 85, 247, 0.4)",
+                        "cyan-glow": "0 0 15px rgba(6, 182, 212, 0.4)",
+                        "green-glow": "0 0 15px rgba(16, 185, 129, 0.4)"
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="how-to-play.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="text-slate-100 antialised min-h-screen relative">
+    <div class="cosmic-nebula"></div>
+    <div
+        class="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,24,48,0.3),transparent_70%)] pointer-events-none z-[-1]">
+    </div>
+
+    <header class="sticky top-0 z-40 glass-panel border-b border-white/5 shadow-lg backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand -->
+            <div class="flex items-center gap-3">
+                <span class="text-3xl animate-pulse">🪐</span>
+                <div>
+                    <h1
+                        class="heading-font text-lg font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
+                        MATHVERSE EXPRESS
+                    </h1>
+                    <p class="text-[10px] text-slate-400 font-medium tracking-widest uppercase">Cosmic Player Matrix</p>
+                </div>
+            </div>
+
+            <!-- Global Stats / Avatar Display -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                <!-- Pilot Profile Widget -->
+                <div
+                    class="flex items-center gap-2 bg-slate-800/60 border border-slate-700/50 py-1 px-3 rounded-full text-xs">
+                    <span id="nav-avatar" class="text-lg">🐱</span>
+                    <span id="nav-name" class="font-semibold text-slate-200">Cadet</span>
+                </div>
+
+                <!-- XP/Coins Panel -->
+                <div class="flex items-center gap-3 text-xs">
+                    <div class="flex items-center gap-1 bg-purple-950/40 border border-purple-500/20 py-1 px-3 rounded-full"
+                        title="Experience Points">
+                        <span class="text-purple-400 font-bold">XP</span>
+                        <span id="global-xp" class="font-bold text-white">10</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-yellow-950/40 border border-yellow-500/20 py-1 px-3 rounded-full"
+                        title="In-game Coins">
+                        <span><i class="fa-solid fa-coins text-yellow-500"></i></span>
+                        <span id="global-coins" class="font-bold text-yellow-400">25</span>
+                    </div>
+                </div>
+
+                <!-- Parents Button -->
+                <button onclick="openParentGateModal()"
+                    class="flex items-center gap-1.5 bg-rose-600 hover:bg-rose-500 active:scale-95 transition text-white py-1.5 px-3.5 rounded-lg font-semibold text-xs shadow-md shadow-rose-900/30">
+                    <i class="fa-solid fa-lock text-[10px]"></i> Parents
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO INTRODUCTION BANNER -->
+    <section class="relative overflow-hidden py-12 md:py-16 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Text Content -->
+                <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
+                    <span
+                        class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                        <i class="fa-solid fa-space-shuttle animate-bounce text-[10px]"></i> Version 2.0 Fully Dynamic
+                        Manual
+                    </span>
+                    <h2 class="heading-font text-4xl sm:text-5xl font-bold leading-tight text-white">
+                        Player's Cosmic Guide <br>
+                        <span
+                            class="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">MathVerse
+                            Express</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Welcome, Cadet! This interactive portal unlocks the mysteries of the calculation cosmos. Dive
+                        into diagnostic arenas, explore curriculum worlds, tweak difficulty presets, and practice in
+                        real-time. Parents can bypass the security gate to review live simulated metrics!
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
+                        <a href="#arena-anchor"
+                            class="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold text-xs py-2.5 px-5 rounded-lg transition-all transform hover:-translate-y-0.5 shadow-lg shadow-purple-900/20">
+                            <i class="fa-solid fa-gamepad mr-1.5"></i> Launch Practice Arena
+                        </a>
+                        <a href="#curriculum-anchor"
+                            class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs py-2.5 px-5 rounded-lg border border-slate-700 transition">
+                            <i class="fa-solid fa-map mr-1.5"></i> Worlds Map
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Customizer Live Panel -->
+                <div class="lg:col-span-5">
+                    <div
+                        class="glass-panel rounded-2xl p-6 border-cyan-500/20 shadow-cyan-glow relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-cyan-500/15 to-transparent pointer-events-none rounded-bl-full">
+                        </div>
+                        <h3 class="heading-font font-bold text-lg text-white flex items-center gap-2 mb-4">
+                            <i class="fa-solid fa-user-astronaut text-cyan-400"></i> Setup Hero Profile
+                        </h3>
+
+                        <!-- Name Input -->
+                        <div class="space-y-1.5 mb-4">
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider">Pilot
+                                Moniker</label>
+                            <input type="text" id="custom-name" maxlength="12" value="CosmicCadet"
+                                class="w-full bg-slate-900/80 border border-slate-700 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 rounded-lg py-2 px-3 text-sm text-white placeholder-slate-500 transition outline-none">
+                            <p class="text-[10px] text-slate-400">Limit: 12 characters. Your profile is utilized below.
+                            </p>
+                        </div>
+
+                        <!-- Avatar Select -->
+                        <div class="space-y-1.5">
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider">Choose
+                                Companion Avatar</label>
+                            <div class="grid grid-cols-5 gap-2" id="avatar-grid">
+                                <!-- Emojis dynamically loaded -->
+                            </div>
+                        </div>
+
+                        <button onclick="updateProfile()"
+                            class="w-full mt-5 bg-cyan-600 hover:bg-cyan-500 active:scale-95 transition text-white font-bold text-xs py-2.5 px-4 rounded-lg shadow-md shadow-cyan-950">
+                            Save & Lock Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE WALKTHROUGH MAIN BODY -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- LEFT NAVIGATION/TOC -->
+            <aside class="lg:col-span-3 space-y-4">
+                <div class="glass-panel rounded-xl p-4 sticky top-24 border-white/5 space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 px-2">Navigation Matrix</h4>
+                    <nav class="space-y-1">
+                        <a href="#getting-started"
+                            class="nav-link flex items-center gap-2.5 py-2 px-3 rounded-lg text-sm transition text-cyan-400 bg-cyan-500/10 font-medium">
+                            <span class="text-base">🚀</span> Getting Started
+                        </a>
+                        <a href="#step-1-difficulty"
+                            class="nav-link flex items-center gap-2.5 py-2 px-3 rounded-lg text-sm transition text-slate-400 hover:text-white hover:bg-white/5">
+                            <span class="text-base">🎛️</span> Battle Difficulty
+                        </a>
+                        <a href="#step-2-worlds"
+                            class="nav-link flex items-center gap-2.5 py-2 px-3 rounded-lg text-sm transition text-slate-400 hover:text-white hover:bg-white/5">
+                            <span class="text-base">🌍</span> Curriculum Worlds
+                        </a>
+                        <a href="#step-3-arena"
+                            class="nav-link flex items-center gap-2.5 py-2 px-3 rounded-lg text-sm transition text-slate-400 hover:text-white hover:bg-white/5">
+                            <span class="text-base">⚔️</span> Play Arena
+                        </a>
+                        <a href="#step-4-parents"
+                            class="nav-link flex items-center gap-2.5 py-2 px-3 rounded-lg text-sm transition text-slate-400 hover:text-white hover:bg-white/5">
+                            <span class="text-base">🔐</span> Parent Suite & Logs
+                        </a>
+                    </nav>
+
+                    <div class="h-px bg-white/5 my-2"></div>
+
+                    <!-- Mini Tips -->
+                    <div
+                        class="bg-gradient-to-r from-purple-950/20 to-indigo-950/20 p-3 rounded-lg border border-purple-500/10 space-y-1">
+                        <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Guide Tip</span>
+                        <p class="text-xs text-slate-300 leading-normal">
+                            Play the math simulator below to earn <strong class="text-white">XP</strong> and <strong
+                                class="text-yellow-400">Coins</strong>, then unlock worlds instantly!
+                        </p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- RIGHT MAIN CONTENT COLUMNS -->
+            <div class="lg:col-span-9 space-y-12">
+
+                <!-- SECTION: GETTING STARTED -->
+                <section id="getting-started" class="scroll-mt-24 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-xl shadow-cyan-glow">
+                            🚀</div>
+                        <h3 class="heading-font text-2xl font-bold text-white">Getting Started</h3>
+                    </div>
+
+                    <div class="glass-panel rounded-xl p-6 border-white/5 space-y-4">
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            When you launch MathVerse Express for the first time, you build your custom companion card.
+                            Name your character up to 12 characters and choose an avatar emoji. Then, you're locked
+                            straight into the cosmic Command Center Dashboard to manage your operations!
+                        </p>
+
+                        <!-- Visual Companion Card -->
+                        <div
+                            class="bg-gradient-to-br from-slate-900 to-space-950 border border-slate-800 rounded-xl p-5 relative overflow-hidden flex flex-col sm:flex-row items-center gap-5">
+                            <div
+                                class="w-16 h-16 rounded-full bg-slate-800 border-2 border-cyan-500 flex items-center justify-center text-3xl shadow-cyan-glow animate-bounce">
+                                <span id="card-avatar">🐱</span>
+                            </div>
+                            <div class="space-y-1 text-center sm:text-left flex-1">
+                                <div class="flex flex-wrap justify-center sm:justify-start items-center gap-2">
+                                    <h4 id="card-name" class="heading-font text-lg font-bold text-white">CosmicCadet
+                                    </h4>
+                                    <span
+                                        class="text-[10px] bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full font-bold">Pilot
+                                        Moniker</span>
+                                </div>
+                                <p class="text-xs text-slate-400 leading-relaxed">Companion active. Read instructions
+                                    below to begin piloting procedures.</p>
+                            </div>
+                            <div
+                                class="text-xs text-slate-400 bg-white/5 py-1.5 px-3 rounded border border-white/5 text-center w-full sm:w-auto">
+                                <i class="fa-solid fa-qrcode mr-1"></i> ID: MV-83921
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SECTION: STEP 1 BATTLE DIFFICULTY -->
+                <section id="step-1-difficulty" class="scroll-mt-24 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-xl shadow-neon-glow">
+                            🎛️</div>
+                        <h3 class="heading-font text-2xl font-bold text-white">Step 1: Set Your Battle Difficulty</h3>
+                    </div>
+
+                    <div class="glass-panel rounded-xl p-6 border-white/5 space-y-6">
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            Before diving into a curriculum world, choose your level tier from the difficulty rack. The
+                            generator engine dynamically alters the digit size of operands on the fly:
+                        </p>
+
+                        <!-- Interactive Difficulty Chooser Widget -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Easy Card -->
+                            <div onclick="selectDifficulty('EASY')" id="diff-card-EASY"
+                                class="cursor-pointer group relative border-2 border-purple-500/10 bg-slate-900/40 hover:bg-slate-900/80 p-4 rounded-xl transition-all duration-300">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs font-bold text-purple-400 tracking-wider">EASY</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-slate-600 group-hover:text-purple-400 text-sm checked-icon"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-1">2 Digits</h4>
+                                <p class="text-xs text-slate-400 mb-2">Numbers from 10 to 99.</p>
+                                <div
+                                    class="text-[10px] text-purple-300 bg-purple-950/30 py-1 px-2 rounded-md inline-block">
+                                    Addition & Subtraction basics
+                                </div>
+                            </div>
+
+                            <!-- Medium Card -->
+                            <div onclick="selectDifficulty('MEDIUM')" id="diff-card-MEDIUM"
+                                class="cursor-pointer group relative border-2 border-purple-500/10 bg-slate-900/40 hover:bg-slate-900/80 p-4 rounded-xl transition-all duration-300">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs font-bold text-cyan-400 tracking-wider">MEDIUM</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-slate-600 group-hover:text-cyan-400 text-sm checked-icon"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-1">3 Digits</h4>
+                                <p class="text-xs text-slate-400 mb-2">Numbers from 100 to 999.</p>
+                                <div class="text-[10px] text-cyan-300 bg-cyan-950/30 py-1 px-2 rounded-md inline-block">
+                                    Intermediate mental tracking
+                                </div>
+                            </div>
+
+                            <!-- Hard Card -->
+                            <div onclick="selectDifficulty('HARD')" id="diff-card-HARD"
+                                class="cursor-pointer group relative border-2 border-purple-500/10 bg-slate-900/40 hover:bg-slate-900/80 p-4 rounded-xl transition-all duration-300">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs font-bold text-pink-400 tracking-wider">HARD</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-slate-600 group-hover:text-pink-400 text-sm checked-icon"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-1">4 Digits</h4>
+                                <p class="text-xs text-slate-400 mb-2">Numbers from 1000 to 9999.</p>
+                                <div class="text-[10px] text-pink-300 bg-pink-950/30 py-1 px-2 rounded-md inline-block">
+                                    Cosmic Grandmaster wizards
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Equation Engine Simulator -->
+                        <div class="bg-space-950 border border-slate-800 rounded-xl p-5 space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold tracking-widest text-slate-400 uppercase">Live Math
+                                    Generator Engine</span>
+                                <span class="text-xs text-slate-400">Selected: <strong id="engine-selected-diff"
+                                        class="text-white">EASY</strong></span>
+                            </div>
+                            <div
+                                class="flex items-center justify-center py-6 bg-slate-900/40 rounded-lg border border-white/5 relative">
+                                <div class="absolute top-2 left-2 flex gap-1">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span>
+                                    <span
+                                        class="text-[8px] text-green-400 uppercase tracking-wider font-semibold">Active
+                                        Engine</span>
+                                </div>
+                                <div class="text-center">
+                                    <div id="live-equation"
+                                        class="text-3xl sm:text-4xl heading-font font-bold text-glow-purple text-purple-400">
+                                        45 + 23</div>
+                                    <p class="text-xs text-slate-400 mt-2">Dynamic values simulated live according to
+                                        constraint thresholds</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SECTION: STEP 2 WORLD SELECTION -->
+                <section id="step-2-worlds" class="scroll-mt-24 space-y-4">
+                    <span id="curriculum-anchor" class="block -mt-24 pt-24"></span>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-xl shadow-cyan-glow">
+                            🌍</div>
+                        <h3 class="heading-font text-2xl font-bold text-white">Step 2: Choose a Curriculum World</h3>
+                    </div>
+
+                    <div class="glass-panel rounded-xl p-6 border-white/5 space-y-6">
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            The universe is segmented into <strong>5 unique themed environments</strong>, each focusing
+                            on a distinct math operational focus. Work through them naturally via XP accumulation, or
+                            bypass the queue instantly by executing the Coin Booster Shortcut using your custom savings!
+                        </p>
+
+                        <!-- Cosmic Worlds Map Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="worlds-grid">
+                            <!-- World cards injected by JS -->
+                        </div>
+
+                        <!-- Info Note on Shortcut -->
+                        <div
+                            class="flex items-start gap-3 bg-yellow-950/20 border border-yellow-500/20 rounded-xl p-4 text-xs text-slate-300 leading-relaxed">
+                            <span class="text-lg">💰</span>
+                            <div>
+                                <h4 class="font-bold text-yellow-400 mb-0.5">The Coin Booster Shortcut</h4>
+                                <p>Can't wait to play multiplication or Division? You can bypass the XP grind. If you
+                                    have collected enough space treasure, click <strong>"Unlock with 60 🪙"</strong> on
+                                    any locked world card to buy instant, permanent access using your simulated
+                                    earnings!</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SECTION: STEP 3 PLAY ARENA -->
+                <section id="step-3-arena" class="scroll-mt-24 space-y-4">
+                    <span id="arena-anchor" class="block -mt-24 pt-24"></span>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-xl shadow-neon-glow">
+                            ⚔️</div>
+                        <h3 class="heading-font text-2xl font-bold text-white">Step 3: Enter the Play Arena</h3>
+                    </div>
+
+                    <div class="glass-panel rounded-xl p-6 border-white/5 space-y-6">
+                        <div class="space-y-2">
+                            <p class="text-slate-300 leading-relaxed text-sm">
+                                Once a world is launched, your active timeline run begins. There are no fixed limits
+                                (like 5 or 10 questions) anymore! Solve as many endless equations as you can to stack
+                                rewards, and click the <strong>"Finish Run" flag</strong> to secure your coins & XP.
+                            </p>
+                        </div>
+
+                        <!-- Dynamic Math Arena Simulation Interface -->
+                        <div
+                            class="border border-slate-700/60 bg-gradient-to-b from-space-900 to-space-950 rounded-2xl overflow-hidden shadow-2xl relative">
+                            <!-- Arena Header -->
+                            <div
+                                class="bg-slate-800/80 border-b border-slate-700 p-4 flex flex-wrap justify-between items-center gap-3">
+                                <div class="flex items-center gap-2">
+                                    <span id="arena-world-emoji" class="text-xl">🪐</span>
+                                    <div>
+                                        <h4 id="arena-world-title" class="heading-font font-bold text-sm text-white">
+                                            Space Cosmos</h4>
+                                        <p class="text-[10px] text-cyan-400 tracking-wide" id="arena-operand-type">
+                                            Addition Arena</p>
+                                    </div>
+                                </div>
+
+                                <!-- Current Arena Stats -->
+                                <div class="flex items-center gap-3">
+                                    <!-- Score -->
+                                    <div class="text-center px-3 py-1 bg-slate-900/80 rounded-md border border-white/5">
+                                        <span
+                                            class="block text-[8px] uppercase tracking-widest text-slate-400">Score</span>
+                                        <span id="arena-score" class="text-xs font-bold text-white">0</span>
+                                    </div>
+                                    <!-- Combo -->
+                                    <div
+                                        class="text-center px-3 py-1 bg-purple-950/40 rounded-md border border-purple-500/20">
+                                        <span class="block text-[8px] uppercase tracking-widest text-purple-400">Combo
+                                            Surge</span>
+                                        <span id="arena-combo" class="text-xs font-bold text-purple-400">x1</span>
+                                    </div>
+                                    <!-- Hints -->
+                                    <div
+                                        class="text-center px-3 py-1 bg-indigo-950/40 rounded-md border border-indigo-500/20">
+                                        <span class="block text-[8px] uppercase tracking-widest text-indigo-400">Hints
+                                            Left</span>
+                                        <span id="arena-hints" class="text-xs font-bold text-indigo-400">3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Arena Gameplay Body -->
+                            <div
+                                class="p-6 md:p-8 space-y-6 flex flex-col items-center justify-center relative min-h-[220px]">
+                                <!-- Splash Screens (e.g. Locked World alert) -->
+                                <div id="arena-blocked-screen"
+                                    class="hidden absolute inset-0 bg-slate-950/95 flex flex-col items-center justify-center p-6 text-center z-10">
+                                    <span class="text-4xl mb-2">🔒</span>
+                                    <h5 class="heading-font text-base font-bold text-white mb-1">Curriculum World Locked
+                                    </h5>
+                                    <p class="text-xs text-slate-400 max-w-sm mb-4">You need more XP or must use the
+                                        Coin Booster Shortcut in Step 2 to play in this Arena.</p>
+                                    <a href="#curriculum-anchor"
+                                        class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold py-1.5 px-4 rounded transition">Go
+                                        Unlock Worlds</a>
+                                </div>
+
+                                <!-- Quest & Active Question panel -->
+                                <div id="arena-gameplay-content" class="w-full max-w-md space-y-6 text-center">
+                                    <div class="space-y-1">
+                                        <span
+                                            class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Solve
+                                            the Equation</span>
+                                        <div id="arena-question"
+                                            class="text-3xl sm:text-4xl font-bold text-white heading-font tracking-wide">
+                                            34 + 19
+                                        </div>
+                                    </div>
+
+                                    <!-- Choice Buttons (Grid) -->
+                                    <div class="grid grid-cols-2 gap-3" id="arena-choices">
+                                        <!-- Choice buttons dynamically loaded -->
+                                    </div>
+
+                                    <!-- Feedback alerts -->
+                                    <div id="arena-feedback" class="h-6 text-xs font-bold transition text-center">
+                                        <!-- Dynamic feedback text inside -->
+                                    </div>
+
+                                    <!-- Utilities Bar (Hints & Finish) -->
+                                    <div
+                                        class="flex flex-wrap justify-between items-center gap-3 pt-3 border-t border-slate-800/80">
+                                        <!-- Hint Trigger Button -->
+                                        <button id="arena-hint-btn" onclick="useArenaHint()"
+                                            class="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition text-white text-xs font-bold py-1.5 px-4 rounded-lg">
+                                            <i class="fa-solid fa-lightbulb"></i> Use Hint
+                                        </button>
+
+                                        <!-- Buy Hint Button (Initially hidden or disabled until hits 0) -->
+                                        <button id="arena-buy-hint-btn" onclick="buyArenaHint()"
+                                            class="hidden flex items-center gap-1.5 bg-yellow-600 hover:bg-yellow-500 text-white text-[11px] font-bold py-1.5 px-3 rounded-lg border border-yellow-400/20">
+                                            <span><i class="fa-solid fa-coins"></i> Buy Hint (10 coins)</span>
+                                        </button>
+
+                                        <!-- Finish Runner -->
+                                        <button onclick="finishArenaRun()"
+                                            class="flex items-center gap-1.5 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold py-1.5 px-4 rounded-lg">
+                                            <i class="fa-solid fa-flag"></i> Finish Run
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Features Mechanics breakdown -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                            <div class="bg-slate-900/30 border border-white/5 p-4 rounded-xl space-y-2">
+                                <h4
+                                    class="font-bold text-xs uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-bolt"></i> Multiplier Combo Surge (+2 Boost!)
+                                </h4>
+                                <p class="text-xs text-slate-300 leading-normal">
+                                    Answering correctly builds momentum. Every consecutive accurate answer injects a
+                                    whopping <strong>+2 to your current Combo Multiplier</strong> (e.g. x1 ➔ x3 ➔ x5).
+                                    An incorrect option instantly drops the temporary streak index back down to
+                                    <strong>x1</strong>!
+                                </p>
+                            </div>
+                            <div class="bg-slate-900/30 border border-white/5 p-4 rounded-xl space-y-2">
+                                <h4
+                                    class="font-bold text-xs uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-lightbulb"></i> Clutch Fallback Hint System
+                                </h4>
+                                <p class="text-xs text-slate-300 leading-normal">
+                                    Every new run provides 3 free clues that cross out two wrong choice variables. If
+                                    you exhaust the reserve, buy fresh single clues on the fly for <strong>10
+                                        🪙</strong> right inside the arena to safeguard your combo surge!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SECTION: STEP 4 ADULT GATE & METRICS -->
+                <section id="step-4-parents" class="scroll-mt-24 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-xl shadow-cyan-glow">
+                            🔐</div>
+                        <h3 class="heading-font text-2xl font-bold text-white">Step 4: Adult Security Gate & Analytics
+                        </h3>
+                    </div>
+
+                    <div class="glass-panel rounded-xl p-6 border-white/5 space-y-6">
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            To ensure progress trackers remain strictly parent-accessible, loading the analytics panel
+                            prompts an instantaneous single-digit multiplication calculation lock. Children cannot
+                            easily bypass the velocity check!
+                        </p>
+
+                        <!-- Lock Explanation Graphic -->
+                        <div
+                            class="bg-slate-950 border border-slate-800 rounded-2xl p-6 text-center max-w-lg mx-auto space-y-4 relative overflow-hidden">
+                            <div class="absolute -top-10 -right-10 w-24 h-24 bg-rose-500/10 rounded-full blur-xl"></div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-rose-950/40 border border-rose-500/30 flex items-center justify-center text-rose-400 text-lg mx-auto">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="heading-font font-bold text-base text-white">Security Gate Preview</h4>
+                                <p class="text-xs text-slate-400">Click below to experience the secure gateway test and
+                                    unlock the dynamic report.</p>
+                            </div>
+
+                            <button onclick="openParentGateModal()"
+                                class="inline-flex items-center gap-2 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white text-xs font-bold py-2.5 px-6 rounded-lg shadow-lg shadow-rose-950/50 active:scale-95 transition">
+                                <i class="fa-solid fa-lock-open text-[10px]"></i> Bypass Parent Gate Lock
+                            </button>
+                        </div>
+
+                        <!-- Parent Gate Mock Panel Display (Visible after bypass) -->
+                        <div id="parent-suite-section"
+                            class="hidden border border-rose-500/20 bg-rose-950/5 rounded-2xl p-5 sm:p-6 space-y-6 relative">
+                            <!-- Overlay Active Badge -->
+                            <div
+                                class="absolute top-4 right-4 bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span> Parent Console
+                                Active
+                            </div>
+
+                            <h4 class="heading-font font-bold text-lg text-white flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-rose-400"></i> Cadet Educational Diagnostics
+                            </h4>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Chart 1: Accuracy metrics -->
+                                <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-300">Category
+                                            Accuracy Profile</h5>
+                                        <span class="text-[10px] text-slate-400">Live generated stats</span>
+                                    </div>
+
+                                    <!-- Bar Chart container -->
+                                    <div class="space-y-3 pt-2">
+                                        <!-- Addition -->
+                                        <div class="space-y-1">
+                                            <div class="flex justify-between text-[11px]">
+                                                <span class="text-slate-300">Addition Arena</span>
+                                                <span class="font-bold text-white" id="stat-add-val">90%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                                <div id="stat-add-bar"
+                                                    class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-1000"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Subtraction -->
+                                        <div class="space-y-1">
+                                            <div class="flex justify-between text-[11px]">
+                                                <span class="text-slate-300">Subtraction Arena</span>
+                                                <span class="font-bold text-white" id="stat-sub-val">78%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                                <div id="stat-sub-bar"
+                                                    class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-1000"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Multiplication -->
+                                        <div class="space-y-1">
+                                            <div class="flex justify-between text-[11px]">
+                                                <span class="text-slate-300">Multiplication Arena</span>
+                                                <span class="font-bold text-white" id="stat-mul-val">65%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                                <div id="stat-mul-bar"
+                                                    class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-1000"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Division -->
+                                        <div class="space-y-1">
+                                            <div class="flex justify-between text-[11px]">
+                                                <span class="text-slate-300">Division Arena</span>
+                                                <span class="font-bold text-white" id="stat-div-val">40%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                                <div id="stat-div-bar"
+                                                    class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-1000"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Geometry -->
+                                        <div class="space-y-1">
+                                            <div class="flex justify-between text-[11px]">
+                                                <span class="text-slate-300">Geometry & Perimeter</span>
+                                                <span class="font-bold text-white" id="stat-geo-val">50%</span>
+                                            </div>
+                                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                                <div id="stat-geo-bar"
+                                                    class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-1000"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- AI Remediation & Action Recommendations -->
+                                <div
+                                    class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl flex flex-col justify-between space-y-4">
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="text-sm">🤖</span>
+                                            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-300">AI
+                                                Remediation Analysis</h5>
+                                        </div>
+                                        <p class="text-xs text-slate-300 leading-relaxed">
+                                            Our system scans for operational accuracy metrics falling below <strong
+                                                class="text-rose-400">75%</strong> to guide training emphasis:
+                                        </p>
+
+                                        <!-- Warning Recommendations list -->
+                                        <div class="space-y-2 text-xs" id="parent-remediations-list">
+                                            <!-- Dynamic alerts built dynamically from accuracy state -->
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-slate-950/60 p-3 rounded-lg border border-white/5">
+                                        <span class="text-[10px] text-slate-400 font-semibold block uppercase">Cadet
+                                            Session Timeline Index</span>
+                                        <div class="flex justify-between items-end h-12 gap-1.5 pt-2 px-1">
+                                            <div class="flex-1 bg-rose-500/20 hover:bg-rose-500/40 rounded h-1/3 transition"
+                                                title="Session 1"></div>
+                                            <div class="flex-1 bg-rose-500/40 hover:bg-rose-500/60 rounded h-1/2 transition"
+                                                title="Session 2"></div>
+                                            <div class="flex-1 bg-rose-500/30 hover:bg-rose-500/50 rounded h-2/5 transition"
+                                                title="Session 3"></div>
+                                            <div class="flex-1 bg-rose-500/60 hover:bg-rose-500/80 rounded h-3/4 transition"
+                                                title="Session 4"></div>
+                                            <div class="flex-1 bg-rose-500/50 hover:bg-rose-500/70 rounded h-3/5 transition"
+                                                title="Session 5"></div>
+                                            <div class="flex-1 bg-rose-500/70 hover:bg-rose-500/90 rounded h-5/6 transition"
+                                                title="Session 6"></div>
+                                            <div class="flex-1 bg-cyan-500 hover:bg-cyan-400 rounded h-full transition"
+                                                title="Session 7 (Latest Run)"></div>
+                                        </div>
+                                        <div class="flex justify-between text-[8px] text-slate-400 pt-1">
+                                            <span>7 Runs ago</span>
+                                            <span>Current Run</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- PARENT GATE LOCK DIALOG/MODAL -->
+    <div id="parent-gate-modal"
+        class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-sm p-6 space-y-4 relative shadow-2xl">
+            <!-- Close -->
+            <button onclick="closeParentGateModal()"
+                class="absolute top-4 right-4 text-slate-400 hover:text-white transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-1">
+                <span class="text-3xl">🛡️</span>
+                <h4 class="heading-font font-bold text-lg text-white">Adult Security Verification</h4>
+                <p class="text-xs text-slate-400">Solve the single-digit calculation verification below to access
+                    educational diagnostics.</p>
+            </div>
+
+            <!-- Lock Math Challenge -->
+            <div class="bg-slate-950 p-4 rounded-xl border border-white/5 text-center">
+                <div id="parent-gate-equation"
+                    class="text-2xl font-bold tracking-widest text-glow-cyan text-cyan-400 heading-font">
+                    6 x 7 = ?
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <input type="number" id="parent-gate-input" placeholder="Enter solution value"
+                    class="w-full bg-slate-950 border border-slate-700 rounded-lg py-2 px-3 text-sm text-center text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition outline-none">
+                <p id="parent-gate-error" class="text-[11px] text-rose-400 text-center hidden">Incorrect value.
+                    Calculation gate sequence locked. Try again!</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="closeParentGateModal()"
+                    class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold py-2 px-4 rounded-lg transition">
+                    Cancel
+                </button>
+                <button onclick="verifyParentGate()"
+                    class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold py-2 px-4 rounded-lg transition shadow-md shadow-rose-950/40">
+                    Verify Gate
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- CUSTOM DIALOG NOTIFICATION BOX -->
+    <div id="message-dialog"
+        class="hidden fixed bottom-6 right-6 z-50 bg-slate-900/95 border-l-4 border-cyan-400 text-white p-4 rounded-r-lg shadow-2xl max-w-sm transition-all duration-300 backdrop-blur-md">
+        <div class="flex items-start gap-3">
+            <span class="text-xl" id="dialog-emoji">🐱</span>
+            <div class="flex-1">
+                <h5 class="heading-font font-bold text-xs uppercase text-slate-400 tracking-wider" id="dialog-title">
+                    System Alert</h5>
+                <p class="text-xs text-slate-200 mt-1" id="dialog-body">Companion message body loaded.</p>
+            </div>
+            <button onclick="hideMessageDialog()" class="text-slate-400 hover:text-white text-xs">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-white/5 mt-16 py-8 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex items-center justify-center gap-2">
+                <span class="text-2xl">🪐</span>
+                <span class="heading-font font-bold text-white tracking-widest text-sm uppercase">MathVerse Express
+                    System</span>
+            </div>
+            <p class="text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
+                Empowering spatial & calculation logic. Play, solve, and grow across curriculum planets seamlessly.
+            </p>
+            <div class="text-[10px] text-slate-600">
+                &copy; 2026 MathVerse Express, Inc. All rights reserved. Registered Pilot Arena Gateway.
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="how-to-play.js"></script>
+<script src="WebAudioAPI.js"></script>
+
+</html>
