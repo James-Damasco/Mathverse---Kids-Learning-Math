@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="MathVerse Express Maintenance" />
+    <meta name="version" content="v2.0.0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js" type="module"></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <title>404 - Page Not Found</title>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: "#f5f3ff",
+                            500: "#6366f1",
+                            600: "#4f46e5",
+                            700: "#4338ca"
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 min-h-screen flex flex-col items-center justify-center p-4 overflow-x-hidden relative select-none py-16 md:py-24">
+
+    <div
+        class="absolute top-1/4 left-1/4 w-72 h-72 bg-indigo-400/20 dark:bg-indigo-600/10 rounded-full blur-3xl animate-pulse-glow pointer-events-none">
+    </div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/10 rounded-full blur-3xl animate-pulse-glow pointer-events-none"
+        style="animation-delay: -2s;"></div>
+
+    <div
+        class="hidden md:block absolute top-20 left-20 w-12 h-12 bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-20 dark:opacity-40 rounded-lg animate-float pointer-events-none">
+    </div>
+    <div
+        class="hidden md:block absolute bottom-20 right-20 w-16 h-16 bg-gradient-to-tr from-pink-500 to-rose-500 opacity-20 dark:opacity-30 rounded-full animate-float-delayed pointer-events-none">
+    </div>
+    <div
+        class="hidden md:block absolute top-1/3 right-32 w-8 h-8 border-4 border-indigo-500/30 dark:border-indigo-400/20 rounded-md animate-float-delayed pointer-events-none">
+    </div>
+
+    <header class="absolute top-0 left-0 right-0 p-6 flex justify-between items-center max-w-7xl mx-auto w-full z-10">
+        <div
+            class="flex items-center gap-2 font-bold text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+            <i data-lucide="layers" class="text-indigo-600 dark:text-indigo-400"></i>
+            <span>SaaSify</span>
+        </div>
+        <button id="themeToggle"
+            class="p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:scale-105 transition-all shadow-sm duration-200"
+            aria-label="Toggle Theme">
+            <i data-lucide="moon" class="hidden dark:block w-5 h-5"></i>
+            <i data-lucide="sun" class="block dark:hidden w-5 h-5"></i>
+        </button>
+    </header>
+
+    <main class="w-full max-w-2xl z-10 transform translate-y-4 opacity-0 transition-all duration-700 ease-out my-auto"
+        id="mainContainer">
+
+        <div
+            class="glass-card rounded-3xl p-6 md:p-12 text-center relative overflow-hidden transition-all duration-300">
+
+            <h1
+                class="text-8xl md:text-9xl font-black tracking-tighter bg-gradient-to-b from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-500 bg-clip-text text-transparent drop-shadow-sm select-none animate-pulse">
+                404
+            </h1>
+
+            <h2 class="text-2xl md:text-3xl font-bold mt-4 tracking-tight">
+                Oops! Page not found
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 mt-3 max-w-md mx-auto text-sm md:text-base leading-relaxed">
+                The page you are looking for might have been removed, had its name changed, or is temporarily
+                unavailable.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+                <a href="/"
+                    class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
+                    <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
+                    <span>Back to Home</span>
+                </a>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-slate-200/60 dark:border-slate-800/60 text-left">
+                <div class="flex items-center gap-2 mb-6">
+                    <i data-lucide="git-branch" class="w-4 h-4 text-indigo-500"></i>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">System
+                        Activity & Updates</h3>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex gap-4 items-start group">
+                        <div class="flex flex-col items-center pt-1">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20"></span>
+                            <span class="w-0.5 h-12 bg-slate-200 dark:bg-slate-800 mt-2"></span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between gap-2 flex-wrap">
+                                <span
+                                    class="text-xs font-semibold px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/30">v2.4.0
+                                    Stable</span>
+                                <span class="text-xs text-slate-400">June 2026</span>
+                            </div>
+                            <p class="text-sm font-medium text-slate-700 dark:text-slate-300 mt-1">Core dashboard
+                                optimization and deployment system hotfixes.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-start group">
+                        <div class="flex flex-col items-center pt-1">
+                            <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 ring-4 ring-indigo-500/20"></span>
+                            <span class="w-0.5 h-12 bg-slate-200 dark:bg-slate-800 mt-2"></span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between gap-2 flex-wrap">
+                                <span
+                                    class="text-xs font-semibold px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/30">v2.3.5
+                                    Update</span>
+                                <span class="text-xs text-slate-400">May 2026</span>
+                            </div>
+                            <p class="text-sm font-medium text-slate-700 dark:text-slate-300 mt-1">Upgraded routing
+                                architecture. (Legacy paths might return 404 error responses).</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-start group">
+                        <div class="flex flex-col items-center pt-1">
+                            <span class="w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-slate-600"></span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between gap-2 flex-wrap">
+                                <span
+                                    class="text-xs font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">v2.3.0
+                                    Maintenance</span>
+                                <span class="text-xs text-slate-400">April 2026</span>
+                            </div>
+                            <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Database structural
+                                modifications and general security enhancement integrations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="absolute bottom-0 left-0 right-0 p-6 text-center text-xs text-slate-400 dark:text-slate-500">
+        &copy; 2026 MathVerse Express, Inc. All rights reserved. Help desk:
+        <a href="mailto:userprotonimous@gmail.com?subject=Broken%20Link%20%2F%20404%20Error%20Report&body=Hello%20Support%20Team%2C%0A%0AI%20encountered%20a%20404%20error%20page%20on%20your%20website.%0A%0APlease%20help!"
+            class="hover:underline text-indigo-500 cursor-pointer font-medium focus:outline-none">
+            Support
+        </a>
+    </footer>
+</body>
+
+</html>
